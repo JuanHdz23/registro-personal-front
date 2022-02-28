@@ -1,0 +1,78 @@
+
+<div class="example-header mat-elevation-z8 mt-3">
+  <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar">
+  </mat-form-field>
+</div>
+
+<div class="example-button-row">
+  <button type="button" mat-raised-button color="primary" class="float-right mt-3 mb-2" (click)="registrarUsuario()">
+      <mat-icon>library_add</mat-icon>
+      Registrar Usuario
+    </button>
+
+</div>
+
+<mat-table [dataSource]="usuariosDataSource" matSort class="table mat-elevation-z8 mt-3 mb-1">
+
+  <ng-container matColumnDef="Nombre">
+      <mat-header-cell *matHeaderCellDef mat-sort-header style="background-color: black; color: white; font-size: 16px;"><b> Nombre</b> </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{ element.Nombre }} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="ApellidoPaterno">
+      <mat-header-cell *matHeaderCellDef mat-sort-header style="background-color: black; color: white; font-size: 16px;"> <b>Apellido paterno</b> </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{ element.ApellidoPaterno }} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="ApellidoMaterno">
+      <mat-header-cell *matHeaderCellDef mat-sort-header style="background-color: black; color: white; font-size: 16px;"> <b>Apellido materno</b> </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{ element.ApellidoMaterno }} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="Usuario1">
+      <mat-header-cell *matHeaderCellDef mat-sort-header style="background-color: black; color: white; font-size: 16px;"> <b>Usuario</b> </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{ element.Usuario1 }} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="Activo">
+      <mat-header-cell *matHeaderCellDef mat-sort-header style="background-color: black; color: white; font-size: 16px;"> <b>Activo</b> </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <mat-slide-toggle
+        class=""
+        [color]="color"
+        [checked]="element.EsActivo"
+        [disabled]="disabled"
+        (click)="cambiarEstatus(element,element.EsActivo)"
+        >
+    </mat-slide-toggle>
+      </mat-cell>
+  </ng-container>
+
+
+  <ng-container matColumnDef="acciones">
+      <mat-header-cell *matHeaderCellDef style="background-color: black; color: white; font-size: 16px;"> <b>Acciones</b> </mat-header-cell>
+      <mat-cell *matCellDef="let element; let i = index;">
+        <div class="row">
+          <!-- <div class="col-6">
+              <button type="button" mat-icon-button class="fas fa-pencil-alt fa- mr-3 text-primary" matTooltip="Editar responsable" (click)="registrarUsuario(element)">
+              </button>
+          </div> -->
+          <div class="col-6">
+              <button type="button" mat-icon-button (click)="eliminarUsuario(element.Id)">
+                  <mat-icon class="fas fa-trash text-danger"></mat-icon>
+              </button>
+          </div>
+        </div>
+
+      </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="usuariosDisplayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: usuariosDisplayedColumns;"></mat-row>
+
+</mat-table>
+<mat-paginator [pageSizeOptions]="[5, 10, 25, 50, 100]" [pageSize]="10" [showFirstLastButtons]></mat-paginator>
+
+
+

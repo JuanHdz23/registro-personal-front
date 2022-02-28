@@ -1,0 +1,40 @@
+<div class="row ">
+  <div class="col-12">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+
+
+        <input type="file" (change)="fileChange(input)" #input class="img-upload-btn" accept=".jpg, .jpeg, .png" />
+
+        <button class="btn btn-info btn-block rounded-0" type="button">
+          <span *ngIf="!image"><i class="fa fa-upload"></i> Seleccionar Huella... </span>
+          <span *ngIf="image"><i class="fa fa-refresh"></i> Cambiar Huella... </span>
+        </button>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="image-wrapper">
+          <i *ngIf="image" class="fa fa-times delete-img" (click)="removeImage()"></i>
+          <img [attr.src]="image" *ngIf="image" width="100%" height="200px">
+          <img src="assets/images/no-image.png" *ngIf="!image" width="100%" height="200px">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="row justify-content-center">
+  <button  mat-dialog-close class="btn btn-warning mt-2 mr-2"
+          type="button" >
+          Cancelar
+        </button>
+
+  <button
+  class="btn btn-info mt-2 " type="button"
+  (click)="seleccionar()"
+  >
+  <i class="fa fa-save"></i> Seleccionar
+</button>
+</div>

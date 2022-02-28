@@ -1,0 +1,217 @@
+
+<span mat-dialog-title style="padding-top: 0!important;">
+  <div class="row">
+    <div class="col-md-10">
+    <h2>{{data.municipio}} Información de {{data.fechaInicial | date: "dd-MM-yyyy"}} a {{data.fechaFinal | date: "dd-MM-yyyy"}}</h2>
+    </div>
+    <div class="col-md-2 " style="text-align: right;">
+       <!-- <button mat-dialog-close type="button" class="btn btn-danger btn-circle"><i class="fa fa-times"></i> </button> -->
+       <button class="btn btn-danger waves-effect waves-light" mat-dialog-close type="button"><span class="btn-label"><i class="fa fa-times"></i></span></button>
+      </div>
+
+
+  </div>
+
+</span>
+<mat-dialog-content class="mat-typography" style="padding-top: 0!important;">
+  <div class="row">
+    <div class="col-sm-12 col-xs-12 col-md-4 mt-2">
+      <br>
+      <br>
+      <br>
+      <div class="row">
+        <div class="col-sm-6">
+          <label>Municipio: </label>
+        </div>
+        <div class="col-sm-6">
+          <span class="show-data">{{data.municipio}}</span>
+        </div>
+      </div>
+
+      <hr class="margin-top-0 margin-bottom-10" />
+
+      <div class="row">
+        <div class="col-sm-6">
+          <label># de Fosas</label>
+        </div>
+        <div class="col-sm-6">
+          <span class="show-data">{{infoMunicipioFosas?.numFosas}}</span>
+        </div>
+      </div>
+
+      <hr class="margin-top-0 margin-bottom-10" />
+
+
+      <div class="row">
+        <div class="col-sm-6">
+          <label># de Cuerpos</label>
+        </div>
+        <div class="col-sm-6">
+          <span class="show-data">{{infoMunicipioFosas?.sumaCuerpos}}</span>
+        </div>
+      </div>
+
+      <hr class="margin-top-0 margin-bottom-10" />
+
+      <div class="row">
+        <div class="col-sm-6">
+          <label># de Restos</label>
+        </div>
+        <div class="col-sm-6">
+          <span class="show-data">{{infoMunicipioFosas?.sumaRestos}}</span>
+        </div>
+      </div>
+      <hr class="margin-top-0 margin-bottom-10" />
+    </div>
+
+    <div class="col-sm-12 col-xs-12 col-md-8">
+      <div class="panel bg-grey-50">
+        <div class="panel-title bg-transparent">
+          <div class="panel-head">
+            <strong
+              ><span class="fa-stack">
+                <i class="fa fa-circle-thin fa-stack-2x"></i>
+                <i class="fa fa-ellipsis-h fa-stack-1x"></i>
+              </span>
+              Ubicaciónes de las fosas:
+            </strong>
+          </div>
+        </div>
+
+        <div class="containermapa">
+          <div class="card">
+
+            <agm-map [latitude]="lat" [longitude]="lng" [mapTypeControl]="true" [fullscreenControl]="true" [zoom]="zoom">
+
+            <agm-marker-cluster imagePath="https://raw.githubusercontent.com/googlemaps/v3-utility-library/master/markerclustererplus/images/m">
+                <agm-marker *ngFor="let m of infoMunicipioFosas?.fosas; let i = index" [latitude]="m.LATITUD" [longitude]="m.LONGITUD"
+                (markerClick)="marcadorClick(infoWindow)" [markerDraggable]="false">
+                <agm-info-window [maxWidth]="500" #infoWindow>
+                  <span class="" style="color:#5B2A29">
+                    <h4>{{m.EXPEDIENTE | uppercase}}</h4>
+                  </span>
+                  <span class="" style="color:#66550a">
+                    <h5>{{m.NOMBRE | uppercase}}</h5>
+                  </span>
+                  <h6 class="text-justify">
+                    <b>Fecha Ingreso:</b> {{m.FECHA_INGRESO}}
+
+                  </h6>
+                  <br>
+                  <button (click)="view(m)" class="btn btn-info mt-auto pull-right mb-2 mr-2" type="button"
+                    style="float: right!important;">
+                    <i class="fa fa-eye"></i> Ver
+                  </button>
+                </agm-info-window>
+              </agm-marker>
+</agm-marker-cluster>
+            </agm-map>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+
+    <!-- <div class="col-sm-12 col-xs-12 col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Imagenes del Vehículo</h5>
+        </div>
+        <div
+          id="carouselExampleIndicators"
+          class="carousel slide"
+          data-ride="carousel"
+        >
+        <div>
+           <div class="carousel-inner " role="listbox">
+            <div class="carousel-item active">
+              <img
+                class="d-block w-100 he "
+                src="{{ imagesActive }}"
+                alt="imagen"
+              />
+            </div>
+            <div *ngFor="let item of images" class="carousel-item ">
+              <img class="d-block w-100 he " src="{{ item }}" />
+            </div>
+          </div>
+        </div>
+
+          <a
+            class="carousel-control-prev"
+            href="#carouselExampleIndicators"
+            role="button"
+            data-slide="prev"
+          >
+            <span
+              class="carousel-control-prev-icon"
+              aria-hidden="true"
+            ></span>
+            <span class="sr-only">Anterior</span>
+          </a>
+          <a
+            class="carousel-control-next"
+            href="#carouselExampleIndicators"
+            role="button"
+            data-slide="next"
+          >
+            <span
+              class="carousel-control-next-icon"
+              aria-hidden="true"
+            ></span>
+            <span class="sr-only">Siguiente</span>
+          </a>
+        </div>
+      </div>
+    </div> -->
+    <!-- end row-->
+  </div>
+
+  <br>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="panel no-border ">
+        <div class="panel-title">
+
+          <div class="panel-head font-size-20" style="font-weight: 900;">Fosas Encontradas:</div>
+        </div>
+        <div class="panel-body">
+          <table id="_payment" class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="font-weight: 900;" ># Expediene Fosa</th>
+                <th style="font-weight: 900;">Fecha Localización</th>
+                <th style="font-weight: 900;">Ubicación</th>
+                <th style="font-weight: 900;">Latitud</th>
+                <th style="font-weight: 900;">Longitud</th>
+                <th style="font-weight: 900;"># Cuerpos</th>
+                <th style="font-weight: 900;"># Restos</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let expediente of infoMunicipioFosas?.fosas" (dblclick)="viewFosa(expediente)">
+                <td class="align-middle text-truncate" style="font-family: Arial, Helvetica, sans-serif!important; " >{{expediente.NOMBRE}}</td>
+                <td class="align-middle text-truncate" style="font-family: Arial, Helvetica, sans-serif!important; ">{{expediente.FCH_LOCALIZACION |  date:'dd-MM-yyyy'  }}</td>
+                <td class="align-middle text-truncate" style="font-family: Arial, Helvetica, sans-serif!important; ">{{expediente.NOMBRE_UBICACION}}</td>
+                <td class="align-middle text-truncate" style="font-family: Arial, Helvetica, sans-serif!important; ">{{expediente.LATITUD}}</td>
+                <td class="align-middle text-truncate" style="font-family: Arial, Helvetica, sans-serif!important; ">{{expediente.LONGITUD}}</td>
+                <td class="align-middle text-truncate" style="font-family: Arial, Helvetica, sans-serif!important; ">{{expediente.NUM_CUERPOS}} </td>
+                <td class="align-middle text-truncate" style="font-family: Arial, Helvetica, sans-serif!important; "> {{expediente.NUM_RESTOS}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <br>
+
+</mat-dialog-content>
+
+
+
+
+

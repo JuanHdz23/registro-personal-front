@@ -1,0 +1,396 @@
+<mat-card class="mat-elevation-z5 mt-2">
+  <mat-card-header>
+    <mat-card-title>Registrar Usuario</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-horizontal-stepper [linear]="isLinear" #stepper>
+      <mat-step [stepControl]="PersonalesForm">
+        <br>
+        <form [formGroup]="PersonalesForm">
+          <ng-template matStepLabel>Datos Personales</ng-template>
+          <div class="row">
+            <div class="col-sm-12 col-xs-12 col-md-4">
+              <mat-card class="mat-elevation-z5 ">
+                <mat-card-header>
+                  <mat-card-title>Personales</mat-card-title>
+                </mat-card-header>
+                <div class="row justify-content-center">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Nombre:</mat-label>
+                    <input matInput autocomplete="off" placeholder="Nombre" formControlName="nombre">
+                    <mat-hint>
+                      <span class="text-danger"
+                        *ngIf="PersonalesForm.get('nombre').hasError('required') && PersonalesForm.controls.nombre.touched">
+                        *el campo nombre es requerido
+                      </span>
+                      <span class="text-danger" *ngIf="PersonalesForm.get('nombre').hasError('invalidLetras')">
+                        *El campo nombre solo recibe letras.
+                      </span>
+                    </mat-hint>
+                  </mat-form-field>
+                </div>
+
+                <div class="row justify-content-center ">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Apellido Paterno:</mat-label>
+                    <input matInput autocomplete="off" placeholder="Paterno" formControlName="apPaterno">
+
+                    <mat-hint>
+                      <span class="text-danger"
+                        *ngIf="PersonalesForm.get('apPaterno').hasError('required') && PersonalesForm.controls.apPaterno.touched">
+                        *el campo Paterno es requerido
+                      </span>
+                      <span class="text-danger" *ngIf="PersonalesForm.get('apPaterno').hasError('invalidLetras')">
+                        *El campo Paterno solo recibe letras.
+                      </span>
+                    </mat-hint>
+                  </mat-form-field>
+                </div>
+
+                <div class="row justify-content-center">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Apellido Materno:</mat-label>
+                    <input matInput autocomplete="off" placeholder="Materno" formControlName="apMaterno">
+                    <mat-hint>
+                      <span class="text-danger"
+                        *ngIf="PersonalesForm.get('apMaterno').hasError('required') && PersonalesForm.controls.apMaterno.touched">
+                        *el campo Materno es requerido
+                      </span>
+                      <span class="text-danger" *ngIf="PersonalesForm.get('apMaterno').hasError('invalidLetras')">
+                        *El campo Materno solo recibe letras.
+                      </span>
+                    </mat-hint>
+                  </mat-form-field>
+                </div>
+
+              </mat-card>
+            </div>
+            <div class="col-sm-12 col-xs-12 col-md-4">
+              <mat-card class="mat-elevation-z5">
+                <mat-card-header>
+                  <mat-card-title>Adicionales</mat-card-title>
+                </mat-card-header>
+                <div class="row justify-content-center">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Celular:</mat-label>
+                    <input matInput autocomplete="off" type="number" placeholder="Celular" formControlName="Celular">
+                    <mat-hint>
+                      <span class="text-danger"
+                        *ngIf="PersonalesForm.get('Celular').hasError('required') && PersonalesForm.controls.Celular.touched">
+                        *el campo celular es requerido
+                      </span>
+                      <span class="text-danger" *ngIf="PersonalesForm.get('Celular').hasError('invalidCelular')">
+                        *El celular debe ser de 10 digitos
+                      </span>
+                    </mat-hint>
+                  </mat-form-field>
+                </div>
+
+                <div class="row justify-content-center">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Correo Electronico:</mat-label>
+                    <input matInput autocomplete="off" placeholder="Correo" formControlName="CorreoElectronico">
+                    <mat-hint>
+                      <span class="text-danger"
+                        *ngIf="PersonalesForm.get('CorreoElectronico').hasError('required') && PersonalesForm.controls.CorreoElectronico.touched">
+                        *el campo correo es requerido
+                      </span>
+                      <span class="text-danger"
+                        *ngIf="PersonalesForm.get('CorreoElectronico').hasError('invalidEmail')">
+                        *El correo es invalido
+                      </span>
+                    </mat-hint>
+                  </mat-form-field>
+                </div>
+
+                <div class="row justify-content-center">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Lugar:</mat-label>
+                    <mat-select id="clave_lugar" formControlName="clave_lugar">
+                      <mat-option selected value="null" readonly disabled>-- Seleccione Lugar --</mat-option>
+                      <!-- <mat-option  value="1"  >Hermosillo</mat-option>
+                  <mat-option  value="2"  >Sonora</mat-option> -->
+                      <mat-option *ngFor="let clave of clavesCat" [value]="clave.CLAVE_LUGAR">
+                        {{ clave.LUGAR }}
+                      </mat-option>
+                    </mat-select>
+                    <mat-hint>
+                      <span class='text-danger'
+                        *ngIf='PersonalesForm.controls.clave_lugar.invalid && PersonalesForm.controls.clave_lugar.touched'>
+                        *el campo clave lugar es requerido
+                      </span>
+                    </mat-hint>
+                  </mat-form-field>
+                </div>
+              </mat-card>
+            </div>
+
+            <div class="col-sm-12 col-xs-12 col-md-4">
+              <mat-card class="mat-elevation-z5 ">
+                <mat-card-header>
+                  <mat-card-title>Adicionales</mat-card-title>
+                </mat-card-header>
+                <div class="row justify-content-center">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Observaciones:</mat-label>
+                    <textarea matInput autocomplete="off" style="height: 206px;"
+                      formControlName="observaciones"></textarea>
+                  </mat-form-field>
+                </div>
+
+
+
+              </mat-card>
+            </div>
+          </div>
+
+
+          <br>
+          <div align="end">
+            <div class="row">
+              <div class="col-sm-12 col-xs-12 col-md-6">
+                <button mat-dialog-close class="btn btn-block btn-warning" tabindex="-1">Cerrar</button>
+                <!-- <button  mat-dialog-close class="btn btn-block btn-sm btn-warning mr-1"
+                  tabindex="-1">Cerrar</button> -->
+              </div>
+              <div class="col-sm-12 col-xs-12 col-md-6">
+                <button class="btn btn-block btn-info" type="button" matStepperNext>Siguente</button>
+                <!-- <button mat-button class="btn-block btn-lg btn-info" type="button" matStepperNext>Siguente</button> -->
+              </div>
+            </div>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step [stepControl]="fotoForm">
+        <br>
+        <form [formGroup]="fotoForm">
+          <ng-template matStepLabel>Fotografía</ng-template>
+          <mat-card class="mat-elevation-z5">
+            <mat-card-header>
+              <mat-card-title>Fotografía</mat-card-title>
+
+            </mat-card-header>
+            <mat-card-content>
+              <div class="row justify-content-center">
+                <div class="col-md-6">
+
+                  <h6 style=" color: black;">Foto del Usuario:</h6>
+                  <input type="file" (change)="fileChange(input)" #input class="img-upload-btn"
+                    accept=".jpg, .jpeg, .png" formControlName="Foto" />
+
+                  <button class="btn btn-info btn-block rounded-0" type="button">
+                    <span *ngIf="!image"><i class="fa fa-upload"></i> Seleccionar imagen... </span>
+                    <span *ngIf="image"><i class="fa fa-refresh"></i> Cambiar Imagen... </span>
+                  </button>
+                </div>
+              </div>
+              <div class="row justify-content-center">
+                <div class="col-md-6">
+                  <div class="image-wrapper">
+                    <i *ngIf="image" class="fa fa-times delete-img" (click)="removeImage()"></i>
+                    <img [attr.src]="image" *ngIf="image" width="100%" height="230px">
+                    <img src="assets/images/no-image.png" *ngIf="!image" width="100%" height="230px">
+                  </div>
+                </div>
+              </div>
+            </mat-card-content>
+
+          </mat-card>
+
+          <br>
+          <div align="end">
+            <div class="row">
+              <div class="col-sm-12 col-xs-12 col-md-6">
+                <button matStepperPrevious class="btn btn-block btn-warning">Atras</button>
+              </div>
+              <div class="col-sm-12 col-xs-12 col-md-6">
+                <button class="btn btn-block btn-info" type="button" matStepperNext>Siguente</button>
+              </div>
+            </div>
+          </div>
+          <!-- <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperNext>Next</button>
+          </div> -->
+        </form>
+      </mat-step>
+      <mat-step [stepControl]="usuarioForm">
+        <br>
+        <form [formGroup]="usuarioForm">
+          <ng-template matStepLabel>Datos Usuario</ng-template>
+          <div class="row justify-content-center">
+            <div class="col-sm-12 col-xs-12 col-md-4">
+              <mat-card>
+                <mat-card-header>
+                  <mat-card-title>Usuario y contraseña</mat-card-title>
+
+                </mat-card-header>
+                <mat-card-content>
+                  <div class="row justify-content-center">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Usuario:</mat-label>
+                      <input matInput autocomplete="off" placeholder="Usuario" formControlName="usuario">
+                      <mat-hint>
+                        <span class='text-danger'
+                          *ngIf='usuarioForm.controls.usuario.invalid && usuarioForm.controls.usuario.touched'>
+                          *el campo usuario es requerido
+                        </span>
+                      </mat-hint>
+                    </mat-form-field>
+                  </div>
+                  <div class="row justify-content-center">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Contraseña:</mat-label>
+                      <input matInput autocomplete="off" type="password" placeholder="Contraseña"
+                        formControlName="password">
+                      <mat-hint>
+                        <span class='text-danger'
+                          *ngIf='usuarioForm.controls.password.invalid && usuarioForm.controls.password.touched'>
+                          *el campo contraseña es requerido
+                        </span>
+                      </mat-hint>
+                    </mat-form-field>
+                  </div>
+                  <div class="row justify-content-center">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Confirmar Contraseña:</mat-label>
+                      <input matInput autocomplete="off" type="password" placeholder="Confirmar Contraseña"
+                        formControlName="comfirmPassword">
+                      <mat-hint>
+                        <span class='text-danger'
+                          *ngIf='usuarioForm.controls.comfirmPassword.invalid && usuarioForm.controls.comfirmPassword.touched'>
+                          *el campo confirmar contraseña es requerido
+                        </span>
+                      </mat-hint>
+                    </mat-form-field>
+                  </div>
+                </mat-card-content>
+
+              </mat-card>
+            </div>
+
+            <div class="col-sm-12 col-xs-12 col-md-4">
+              <mat-card>
+                <mat-card-header>
+                  <mat-card-title>Tipo Usuario</mat-card-title>
+
+                </mat-card-header>
+                <mat-card-content>
+                  <div class="row justify-content-center">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Rol:</mat-label>
+                      <mat-select id="Rol" formControlName="Rol">
+                        <mat-option selected value="null" readonly disabled>-- Seleccione Rol --</mat-option>
+                        <mat-option *ngFor="let item of Roles" [value]="item.Id">
+                          {{ item.Rol }}
+                        </mat-option>
+                      </mat-select>
+                      <mat-hint>
+                        <span class='text-danger'
+                          *ngIf='usuarioForm.controls.Rol.invalid && usuarioForm.controls.Rol.touched'>
+                          *el campo Rol es requerido
+                        </span>
+                      </mat-hint>
+                    </mat-form-field>
+                  </div>
+
+
+                  <div class="row justify-content-center">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Clave Empleado</mat-label>
+                      <input matInput autocomplete="off" type="number" placeholder="clave empleado"
+                        formControlName="cveEmpleado">
+                      <mat-hint>
+                        <span class='text-danger'
+                          *ngIf='usuarioForm.controls.cveEmpleado.invalid && usuarioForm.controls.cveEmpleado.touched'>
+                          *el campo clave empleado es requerido
+                        </span>
+                      </mat-hint>
+                    </mat-form-field>
+                  </div>
+                </mat-card-content>
+
+              </mat-card>
+            </div>
+          </div>
+
+
+          <br>
+          <div align="end">
+            <div class="row">
+              <div class="col-sm-12 col-xs-12 col-md-6">
+                <button matStepperPrevious class="btn btn-block btn-warning">Atras</button>
+              </div>
+              <div class="col-sm-12 col-xs-12 col-md-6">
+                <button class="btn btn-block btn-info" type="button" matStepperNext>Siguente</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </mat-step>
+
+      <mat-step>
+        <br>
+        <ng-template matStepLabel>Previa</ng-template>
+
+        <mat-card>
+          <mat-card-header>
+            <mat-card-title>Vista previa</mat-card-title>
+
+          </mat-card-header>
+          <mat-card-content>
+
+            <div class="row mb-2">
+              <div class="col-sm-12 col-xs-12 col-md-2 mt-2">
+                <img class="rounded" src={{image}} width="150px" height="150px">
+              </div>
+              <div class="col-sm-12 col-xs-12 col-md-5 mt-2">
+                <dl class="row ml-4">
+                  <dt class="col-sm-3">Nombre: </dt>
+                  <dd class="col-sm-9"> {{PersonalesForm.value.nombre}} {{PersonalesForm.value.apPaterno}}
+                    {{PersonalesForm.value.apMaterno}} </dd>
+                  <dt class="col-sm-3">Lugar: </dt>
+                  <dd class="col-sm-9"> {{lugar?.LUGAR}} </dd>
+                  <dt class="col-sm-3">Correo: </dt>
+                  <dd class="col-sm-9"> {{PersonalesForm.value.CorreoElectronico}} </dd>
+                  <dt class="col-sm-3">Celular: </dt>
+                  <dd class="col-sm-9"> {{PersonalesForm.value.Celular}} </dd>
+                  <dt class="col-sm-3">Usuario: </dt>
+                  <dd class="col-sm-9"> {{usuarioForm.value.usuario}} </dd>
+                  <dt class="col-sm-3">Contraseña: </dt>
+                  <dd class="col-sm-9"> {{usuarioForm.value.password}} </dd>
+                </dl>
+              </div>
+              <div class="col-sm-12 col-xs-12 col-md-5 mt-2">
+                <dl>
+                  <dt class="col-sm-4"># empleado: </dt>
+                  <dd class="col-sm-8"> {{usuarioForm.value.cveEmpleado}} </dd>
+                  <dt class="col-sm-3">Rol: </dt>
+                  <dd class="col-sm-9"> {{rol?.Rol}} </dd>
+                  <dt class="col-sm-4">Observaciones: </dt>
+                  <dd class="col-sm-8"> {{PersonalesForm.value.observaciones}} </dd>
+
+                </dl>
+              </div>
+            </div>
+
+          </mat-card-content>
+          <br>
+        </mat-card>
+
+        <div align="end" class="mt-2">
+          <div class="row">
+            <div class="col-sm-12 col-xs-12 col-md-6">
+              <button matStepperPrevious class="btn btn-block btn-warning">Atras</button>
+            </div>
+            <div class="col-sm-12 col-xs-12 col-md-6">
+              <button class="btn btn-block btn-info" type="button" (click)="addUsuario()"><i
+                  class="fa fa-save"></i>&nbsp;
+                Guardar</button>
+            </div>
+          </div>
+        </div>
+      </mat-step>
+    </mat-horizontal-stepper>
+  </mat-card-content>
+</mat-card>

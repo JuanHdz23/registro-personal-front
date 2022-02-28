@@ -1,0 +1,97 @@
+<div class="row">
+  <div class="col-lg-4 col-xlg-3 col-md-5">
+    <div class="card">
+        <div class="card-body">
+            <div class="m-t-30 text-center">
+                <img src={{fotoUser}} style="border-radius: 10%;" width="150" />
+                <h4 class="card-title m-t-10">{{dataUsuario?.Nombre}} {{dataUsuario?.ApellidoPaterno}} {{dataUsuario?.ApellidoMaterno}}</h4>
+                <h6 class="card-subtitle">{{rol}}</h6>
+            </div>
+        </div>
+        <div>
+            <hr> </div>
+        <div class="card-body">
+            <small class="text-muted">Correo electronico </small>
+            <h6>{{dataUsuario?.CorreoElectronico}}</h6>
+            <small class="text-muted p-t-30 db">Celular</small>
+            <h6>{{dataUsuario?.Celular}}</h6>
+            <small class="text-muted p-t-30 db">Lugar</small>
+            <h6>{{dataUsuario?.Lugar}}</h6>
+            <small class="text-muted p-t-30 db">Clave empleado</small>
+            <h6>{{dataUsuario?.CveEmpleado}}</h6>
+            <!-- <div class="map-box"> -->
+                <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d470029.1604841957!2d72.29955005258641!3d23.019996818380896!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e848aba5bd449%3A0x4fcedd11614f6516!2sAhmedabad%2C+Gujarat!5e0!3m2!1sen!2sin!4v1493204785508"
+                    width="100%" height="150" frameborder="0" style="border:0" allowfullscreen></iframe>
+            </div> -->
+            <!-- <small class="text-muted p-t-30 db">Social Profile</small>
+            <br/>
+            <button class="btn btn-circle btn-secondary">
+                <i class="fab fa-facebook"></i>
+            </button>
+            <button class="btn btn-circle btn-secondary">
+                <i class="fab fa-twitter"></i>
+            </button>
+            <button class="btn btn-circle btn-secondary">
+                <i class="fab fa-youtube"></i>
+            </button> -->
+        </div>
+    </div>
+</div>
+
+  <div class="col-lg-8 col-xlg-9 col-md-7">
+      <div class="card">
+          <ngb-tabset type="pills" class="custom-pills">
+              <ngb-tab title="Cambiar contraseña">
+                  <ng-template ngbTabContent>
+                      <div class="card-body">
+
+                        <mat-card>
+                          <mat-card-header>
+                            <mat-card-title>Cambiar Contraseña</mat-card-title>
+                          </mat-card-header>
+                          <mat-card-content>
+                           <form [formGroup]="changeForm" class="form-horizontal form-material"  (ngSubmit)="change()">
+
+                            <div class="form-group">
+                              <label class="col-md-12">Contraseña Actual</label>
+                              <div class="col-md-12">
+                                  <input type="password" value="currentPassword" class="form-control form-control-line" formControlName="currentPassword">
+                              </div>
+                          </div>
+
+                              <div class="form-group">
+                                  <label class="col-md-12">Contraseña Nueva</label>
+                                  <div class="col-md-12">
+                                      <input type="password" value="newPassword" class="form-control form-control-line" formControlName="newPassword">
+                                      <small class="text-danger" *ngIf="changeForm.controls.newPassword.touched && changeForm.controls.newPassword.errors?.required">La
+                                        contraseña es requerida</small>
+                                    </div>
+                              </div>
+                              <div class="form-group">
+                                <label class="col-md-12">Confirmar Contraseña</label>
+                                <div class="col-md-12">
+                                    <input type="password" value="newPassword2" class="form-control form-control-line" formControlName="newPassword2">
+                                    <small class="text-danger" *ngIf="changeForm.controls.newPassword2.errors?.equalTo">La confirmación no
+                                      coincide</small>
+                                </div>
+                            </div>
+
+
+                              <div class="form-group">
+                                  <div class="col-sm-12">
+                                      <button mat-raised-button color="primary" [disabled]="!changeForm.valid" type="submit">Actualizar contraseña</button>
+                                  </div>
+                              </div>
+                          </form>
+                          </mat-card-content>
+                        </mat-card>
+
+                      </div>
+                  </ng-template>
+              </ngb-tab>
+          </ngb-tabset>
+      </div>
+  </div>
+
+</div>
+

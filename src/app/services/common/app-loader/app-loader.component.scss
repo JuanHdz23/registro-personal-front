@@ -1,0 +1,31 @@
+.mat-dialog-content {
+    min-height: 122px;
+}
+
+#loader {
+    height: 150px
+}
+
+
+/*Spinner*/
+
+.app-loader {
+    border-radius: 50%;
+    position: relative;
+    // z-index: 1100;
+    top: 60%;
+    left: 65%;
+    margin: -75px 0 0 -75px;
+    border: 16px solid #f3f3f3;
+    border-top: 16px solid #340909;
+    width: 100px;
+    height: 100px;
+    -webkit-animation: spin 1s linear infinite!important;
+    animation: spin 1s linear infinite;
+    background: #f2f4f8;
+
+    &.hide {
+        visibility: hidden;
+        opacity: 0;
+    }
+}

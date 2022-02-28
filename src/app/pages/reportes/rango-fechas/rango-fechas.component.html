@@ -1,0 +1,61 @@
+<h3 mat-dialog-title>Seleccionar Rango de fechas</h3>
+<mat-dialog-content class="mat-typography">
+
+  <form [formGroup]="rangoFechasForm">
+    <div class="row">
+      <div class="col-sm-12 col-xs-12 col-md-12">
+        <div class="form-group">
+          <label for="fechaInicial"><code>*</code>Fecha Inicial</label>
+          <input type="date" class="form-control" id="fechaInicial"
+            formControlName="fechaInicial">
+          <span class="text-danger" *ngIf="rangoFechasForm.get('fechaInicial').hasError('required') && rangoFechasForm.controls.fechaInicial.touched">
+            *La fecha inicial es requerida
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12 col-xs-12 col-md-12">
+        <div class="form-group">
+          <label for="fechaFinal"><code>*</code>Fecha Final</label>
+          <input type="date" class="form-control" id="fechaFinal"
+            formControlName="fechaFinal">
+          <span class="text-danger" *ngIf="rangoFechasForm.get('fechaFinal').hasError('required') && rangoFechasForm.controls.fechaFinal.touched">
+            *La fecha final requerida
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="row" *ngIf="clavescatAux">
+      <div class='col-sm-12 col-xs-12 col-md-12'>
+        <div class='form-group'>
+          <label for='clave'>Municipio:</label>
+          <select class="form-control" id="clave" formControlName="clave">
+            <option selected value="" readonly disabled>-- Seleccione Municipio --</option>
+            <option *ngIf="!clavescatAux" value="00"> 00 -- TODOS</option>
+            <option *ngFor="let item of clavesCat" [ngValue]="item">{{ item.CLAVE_LUGAR}} -- {{item.LUGAR}}</option>
+            <!-- <option value="1">Mexicano</option>
+            <option value="0">italiano</option> -->
+          </select>
+          <!-- <span class='text-danger'
+            *ngIf='expedienteForm.controls.clave.invalid && expedienteForm.controls.clave.touched'>
+            *el campo nacionalidad es requerido
+          </span> -->
+        </div>
+      </div>
+    </div>
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-dialog-close class="btn btn-warning   mr-2" type="button">
+    Cancelar
+  </button>
+  <button [disabled]="rangoFechasForm.invalid" class="btn btn-info" type="button"  (click)="seleccionarRango(rangoFechasForm)">
+    Seleccionar
+  </button>
+</mat-dialog-actions>
+
+
+
+
+

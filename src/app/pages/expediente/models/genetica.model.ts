@@ -1,0 +1,18 @@
+export interface GeneticaModel {
+    TIPO_REGISTRO: string,
+    CLAVE_LUGAR: string,
+    ANIO: string,
+    CONTROL: string,
+    REGISTRO: string,
+    FECHA_RECIBIDO: Date,
+    FECHA_ENTREGADO: Date,
+    PERFIL_NO_IDENTIFICADO_BD: number,
+    PERFIL_SI_IDENTIFICADO_BD: number,
+    PERFIL_IDENTIFICADO_CONFRONTA_DIRECTA: number,
+    NO_PERFIL: number,
+    OBSERVACIONES: string,
+    DICTAMEN: string,
+    FCH_REG: Date,
+    FCH_UAC: Date,
+    USUARIO: string,
+}

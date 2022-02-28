@@ -1,0 +1,47 @@
+/* .itable{
+  border: 1px solid #e9edf2;
+  border-radius: 14px!important;
+
+} */
+
+/* #ngx .ng-valid, .ng-touched.ng-valid {
+  border-color: #e9edf2!important;
+} */
+
+.table-hover{
+  cursor: pointer;
+}
+
+.view {
+  color: #fff;
+  background-color: #1ca2e0;
+  border-color: #1ca2e0;
+}
+
+.bg-aprobado {
+  background-color: rgba(10, 236, 2, 0.452)!important;
+  border-radius: 12px;
+  color: black;
+  font-weight: 700;
+}
+.bg-no-cumple {
+  background-color: #fc3845!important;
+  border-radius: 12px;
+  color: black;
+  font-weight: 700;
+}
+.bg-sin-resultado {
+  background-color: rgb(236, 201, 2)!important;
+  border-radius: 12px;
+  color: black;
+  font-weight: 700;
+}
+.bg-totales {
+  background-color: #251601 !important;
+  border-radius: 12px;
+}
+
+
+
+
+

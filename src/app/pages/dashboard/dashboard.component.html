@@ -1,0 +1,171 @@
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="large" color="#ffffff" type="square-jelly-box" [fullScreen]="true">
+  <p style="color: white"> Cargando... </p>
+</ngx-spinner>
+<mat-card style="  border-radius: 8px;">
+  <div class="ml-3">
+    <form [formGroup]="dashboardForm">
+      <mat-form-field appearance="outline">
+        <mat-label>AÑO:</mat-label>
+        <mat-select id="ANIO" formControlName="ANIO">
+          <mat-option selected value="" readonly>Seleccionar Año</mat-option>
+          <mat-option *ngFor="let item of arrayYears" [value]='item'>{{item}}</mat-option>
+          <!-- <mat-option *ngFor="let complexion of listComplexion" [value]="complexion.DESCRIPCION">
+            <img src="data:image/jpg;base64,{{complexion.IMAGEN}}" style="width: 50px; height: 40;"> {{ complexion.DESCRIPCION }}
+        </mat-option> -->
+        </mat-select>
+      </mat-form-field>
+    </form>
+  </div>
+
+  <!--
+  <div class="col-sm-12 col-xs-12 col-md-6">
+    <div class="form-group">
+        <label for="modelo">*Modelo (año):</label>
+        <select class="form-control" id="modelo" formControlName="modelo">
+            <option selected value="">-- Seleccione un modelo --</option>
+            <option *ngFor="let year of arrayYears" value="{{ year }}"> {{ year }}
+            </option>
+        </select>
+        <span class="text-danger"
+            *ngIf="vehiculosForm.controls.modelo.invalid && vehiculosForm.controls.modelo.touched">
+            *El campo Modelo es requerido
+        </span>
+    </div>
+</div> -->
+
+  <div class="row">
+    <div class="col-sm-12 col-xs-12 col-md-3">
+      <div class="container">
+        <div class="card " style="background-color:#E97C61" (click)="DataEstadistica('Total de Registros', '1')">
+          <div class="card-body">
+            <div class="d-flex no-block">
+              <div class="m-r-20 align-self-center"><img src="assets/images/icon/income-w.png" alt="Income" /></div>
+              <div class="align-self-center">
+                <h6 class="text-white m-t-10 m-b-0">Total Registros</h6>
+                <h2 class="m-t-0 text-white">{{estadistica?.total}} - 100%</h2>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="col-sm-12 col-xs-12 col-md-3">
+      <div class="container">
+        <div class="card" style="background-color:#264652" (click)="DataEstadistica('Desconocidos', '2')">
+          <div class="card-body">
+            <div class="d-flex no-block">
+              <div class="m-r-20 align-self-center"><img src="assets/images/icon/expense-w.png" alt="Income" /></div>
+              <div class="align-self-center">
+                <h6 class="text-white m-t-10 m-b-0">Desconocidos</h6>
+                <h2 class="m-t-0 text-white">{{estadistica?.desconocidos}} - {{estadistica?.desconocidos_porcentaje}}%
+                </h2>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="col-sm-12 col-xs-12 col-md-3">
+      <div class="container">
+        <div class="card" style="background-color:#2A9D8F" (click)="DataEstadistica('Identificados', '3')">
+          <div class="card-body">
+            <div class="d-flex no-block">
+              <div class="m-r-20 align-self-center"><img src="assets/images/icon/assets-w.png" alt="Income" /></div>
+              <div class="align-self-center">
+                <h6 class="text-white m-t-10 m-b-0">Identificados</h6>
+                <h2 class="m-t-0 text-white">{{estadistica?.identificados}} - {{estadistica?.identificados_porcentaje}}%
+                </h2>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+    <div class="col-sm-12 col-xs-12 col-md-3">
+      <div class="container">
+        <div class="card" style="background-color:#E9C46A" (click)="DataEstadistica('Desconocidos Identificados', '4')">
+          <div class="card-body">
+            <div class="d-flex no-block">
+              <div class="m-r-20 align-self-center"><img src="assets/images/icon/staff-w.png" alt="Income" /></div>
+              <div class="align-self-center">
+                <h6 class="text-white m-t-10 m-b-0">Desconocidos Identificados</h6>
+                <h2 class="m-t-0 text-white">{{estadistica?.desconocidos_identificados}} -
+                  {{estadistica?.desconocidos_identificados_porcentaje}}%</h2>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- <div class="col-sm-12 col-xs-12 col-md-3">
+      <div class="container">
+        <div class="card " style="background-color:#F4A261">
+          <div class="card-body">
+            <div class="d-flex no-block">
+              <div class="m-r-20 align-self-center"><img src="assets/images/icon/income-w.png" alt="Income" /></div>
+              <div class="align-self-center">
+                <h6 class="text-white m-t-10 m-b-0">Entregados a F.</h6>
+                <h2 class="m-t-0 text-white">{{estadistica?.entregados}}</h2>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="col-sm-12 col-xs-12 col-md-3">
+      <div class="container">
+        <div class="card" style="background-color:#E76F51">
+          <div class="card-body">
+            <div class="d-flex no-block">
+              <div class="m-r-20 align-self-center"><img src="assets/images/icon/income-w.png" alt="Income" /></div>
+              <div class="align-self-center">
+                <h6 class="text-white m-t-10 m-b-0">Sepultados</h6>
+                <h2 class="m-t-0 text-white">{{estadistica?.sepultados}}</h2>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div> -->
+  </div>
+
+  <div class="containermapa">
+    <div class="card">
+
+
+      <agm-map [latitude]="lat" [longitude]="lng" [mapTypeControl]="true" [fullscreenControl]="true" [zoom]="zoom">
+        <agm-marker *ngFor="let m of markers; let i = index" [latitude]="m.LATITUD" [longitude]="m.LONGITUD"
+          (markerClick)="marcadorClick(infoWindow)" [markerDraggable]="false">
+          <agm-info-window [maxWidth]="500" #infoWindow>
+            <span class="" style="color:#5B2A29">
+              <h4>{{m.EXPEDIENTE | uppercase}}</h4>
+            </span>
+            <span class="" style="color:#66550a">
+              <h5>{{m.NOMBRE | uppercase}}</h5>
+            </span>
+            <h6 class="text-justify">
+              <b>Fecha Ingreso:</b> {{m.FECHA_INGRESO}}
+
+            </h6>
+            <br>
+            <button (click)="view(m)" class="btn btn-info mt-auto pull-right mb-2 mr-2" type="button"
+              style="float: right!important;">
+              <i class="fa fa-eye"></i> Ver
+            </button>
+          </agm-info-window>
+        </agm-marker>
+      </agm-map>
+    </div>
+  </div>
+
+
+</mat-card>

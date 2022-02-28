@@ -1,0 +1,133 @@
+
+
+<button class="btn btn-info" type="button" routerLink="/expediente" style="float: right;">
+  <i class="mdi mdi-keyboard-return"></i> Regresar
+</button>
+
+
+
+<br><br>
+<mat-card>
+  <div class="container mat-card-title">
+    <div class="row mt-4">
+      <div class="col-4 text-center">
+        Usuario: {{infoExpediente?.NOMBRE}} {{infoExpediente?.PATERNO}} {{infoExpediente?.MATERNO}}
+      </div>
+      <div class="col-4">
+        Expediente: {{infoExpediente?.ANIO}}/{{infoExpediente?.CONTROL}}
+      </div>
+      <div class="col-4">
+        Fecha Cita: {{infoExpediente?.FECHA_CITA| date: 'd/MM/yyyy'}}
+      </div>
+    </div>
+  </div>
+
+  <!-- <mat-chip-list aria-label="Fish selection">
+    <mat-chip color="primary" selected class="green" *ngIf="DataExpedienteIndoPes?.Publicar== 1 && DataExpedienteIndoPes?.Identificado != 1">Enviado</mat-chip>
+    <mat-chip color="warn" selected *ngIf="DataExpedienteIndoPes?.Publicar== 0 && DataExpedienteIndoPes?.Identificado != 1">No Enviado</mat-chip>
+    <mat-chip color="warn" selected *ngIf="DataExpedienteIndoPes?.PublicarWeb== 0 && DataExpedienteIndoPes?.Identificado != 1" >No Publicado</mat-chip>
+    <mat-chip color="primary" selected *ngIf="DataExpedienteIndoPes?.PublicarWeb== 1 && DataExpedienteIndoPes?.Identificado != 1">Publicado</mat-chip>
+    <mat-chip color="warn" selected *ngIf="DataExpedienteIndoPes?.Identificado== 0"> No Identificado</mat-chip>
+    <mat-chip color="primary" class="oro" selected *ngIf="DataExpedienteIndoPes?.Identificado== 1">Identificado</mat-chip>
+  </mat-chip-list> -->
+
+  <mat-card-content>
+    <mat-tab-group mat-align-tabs="start">
+      <!-- <mat-tab label="Actividades" *ngxPermissionsOnly="['1']">
+        <ng-template mat-tab-label>
+          <mat-icon *ngIf="DataExpedienteIndoPes?.Actividades == 1"  class="example-tab-icon">done</mat-icon>
+          <mat-icon  *ngIf="DataExpedienteIndoPes?.Actividades == 0" class="example-tab-icons">error</mat-icon>
+          Actividades
+        </ng-template>
+
+        <ng-template matTabContent>
+          <app-actividades [dataExpediente]="DataExpediente"></app-actividades>
+        </ng-template>
+      </mat-tab> -->
+
+      <mat-tab label="Citas" *ngxPermissionsOnly="['1']">
+        <ng-template mat-tab-label>
+          <!-- <mat-icon  *ngIf="DataExpedienteIndoPes?.Expediente== 1" class="example-tab-icon">done</mat-icon>
+          <mat-icon  *ngIf="DataExpedienteIndoPes?.Expediente == 0" class="example-tab-icons">error</mat-icon> -->
+       Citas para tramite
+        </ng-template>
+        <ng-template matTabContent>
+          <app-citas-tramite [dataCitasInfo]="DataExpediente" 
+            (actualizarData)="receiveMessage($event)"></app-citas-tramite>
+        </ng-template>
+      </mat-tab>
+
+      <mat-tab label="RecepcionDocumentos" *ngxPermissionsOnly="['1']">
+        <ng-template mat-tab-label>
+          <!-- <mat-icon  *ngIf="DataExpedienteIndoPes?.Criminalistica== 1" class="example-tab-icon">done</mat-icon>
+          <mat-icon  *ngIf="DataExpedienteIndoPes?.Criminalistica == 0" class="example-tab-icons">error</mat-icon> -->
+          Recepción de documentos
+        </ng-template>
+        <ng-template matTabContent>
+          <app-recepcion-documentos [dataRecepcionDocumentosInfo]="DataExpediente"
+            (actualizarLugar)="receiveMessage($event)"></app-recepcion-documentos>
+        </ng-template>
+      </mat-tab>
+
+      <mat-tab label="AFIS" *ngxPermissionsOnly="['1']">
+        <ng-template mat-tab-label>
+          <!-- <mat-icon  *ngIf="DataExpedienteIndoPes?.Identificacion== 1" class="example-tab-icon">done</mat-icon>
+          <mat-icon  *ngIf="DataExpedienteIndoPes?.Identificacion == 0" class="example-tab-icons">error</mat-icon> -->
+          AFIS
+        </ng-template>
+        <ng-template matTabContent>
+            <app-afis [dataAfisInfo]="DataExpediente"
+            (messageEvent)="receiveMessage($event)"></app-afis>
+        </ng-template>
+      </mat-tab>
+
+      <mat-tab label="Biometricos" *ngxPermissionsOnly="['1']">
+        <ng-template mat-tab-label>
+          <!-- <mat-icon  *ngIf="DataExpedienteIndoPes?.Dactiloscopia== 1" class="example-tab-icon">done</mat-icon>
+          <mat-icon  *ngIf="DataExpedienteIndoPes?.Dactiloscopia == 0" class="example-tab-icons">error</mat-icon> -->
+          Carga de información-biometricos
+        </ng-template>
+        <ng-template matTabContent>
+          <app-biometricos [dataBiometricosInfo]="DataExpediente"
+              (actualizarDactiloscopia)="receiveMessage($event)"></app-biometricos>
+        </ng-template>
+      </mat-tab>
+
+      <mat-tab label="RNPSPRealizados" *ngxPermissionsOnly="['1']">
+        <ng-template mat-tab-label>
+          <!-- <mat-icon  *ngIf="DataExpedienteIndoPes?.Vincular== 1" class="example-tab-icon">done</mat-icon>
+          <mat-icon  *ngIf="DataExpedienteIndoPes?.Vincular == 0" class="example-tab-icons">error</mat-icon> -->
+          RNPSP Realizado
+        </ng-template>
+        <ng-template matTabContent>
+            <app-rnpsp-realizados [dataRnpspInfo]="DataExpediente"
+              (actualizarNuc)="receiveMessage($event)"></app-rnpsp-realizados>
+        </ng-template>
+      </mat-tab>
+     
+      <!-- <mat-tab label="VigenciasC3" *ngxPermissionsOnly="['1']">
+        <ng-template mat-tab-label>
+          Vigencias C3
+        </ng-template>
+        <ng-template matTabContent>
+            <app-vigencias-c3 [dataVigenciaInfo]="DataExpediente"
+              (actualizarNuc)="receiveMessage($event)"></app-vigencias-c3>
+        </ng-template>
+      </mat-tab> -->
+
+      <mat-tab label="ArchivoExpedientes" *ngxPermissionsOnly="['1']">
+        <ng-template mat-tab-label>
+          <!-- <mat-icon  *ngIf="DataExpedienteIndoPes?.Vincular== 1" class="example-tab-icon">done</mat-icon>
+          <mat-icon  *ngIf="DataExpedienteIndoPes?.Vincular == 0" class="example-tab-icons">error</mat-icon> -->
+          Archivo de Expediente RNPSP
+        </ng-template>
+        <ng-template matTabContent>
+            <app-archivo-expedientes [dataArchivoInfo]="DataExpediente"
+              (actualizarNuc)="receiveMessage($event)"></app-archivo-expedientes>
+        </ng-template>
+      </mat-tab>
+    </mat-tab-group>
+
+  </mat-card-content>
+
+</mat-card>

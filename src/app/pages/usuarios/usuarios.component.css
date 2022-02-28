@@ -1,0 +1,46 @@
+.example-container {
+  display: flex;
+  flex-direction: column;
+  min-width: 300px;
+}
+
+.example-header {
+  min-height: 64px;
+  padding: 8px 24px 0;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+.mat-table {
+  overflow: auto;
+}
+
+.mat-row:nth-child(even) {
+  background-color: #ffffff
+}
+
+.mat-row:nth-child(odd) {
+  background-color: #FFFFFF
+}
+
+.encabezado {
+  background-color: lightcoral;
+}
+
+
+h6 {
+  font-size: 12px;
+  line-height: 10px;
+}
+
+.example-button-container {
+  display: flex;
+  justify-content: center;
+  width: 90px;
+}
+
+
+

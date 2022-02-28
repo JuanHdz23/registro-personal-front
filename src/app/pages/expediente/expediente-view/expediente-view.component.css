@@ -1,0 +1,26 @@
+.mat-tab-group {
+  margin-bottom: 48px;
+}
+
+.mat-input-ripple {
+  background-color: green;
+}
+.mat-input-underline{
+  color: blue;
+}
+.mat-form-field.mat-form-field {
+  font-size: 16px;
+  color: red;
+}
+
+
+.example-tab-icon {
+  margin-right: 8px;
+}
+
+.mat-icon.example-tab-icon{
+  color: green;
+}
+.mat-icon.example-tab-icons{
+  color: orange;
+}

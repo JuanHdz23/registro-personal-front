@@ -1,0 +1,415 @@
+<div class="card-body">
+  <h4 class="card-title">Reportes</h4>
+
+  <!-- <h6 class="card-subtitle">Use a classes <code>btn btn-block btn-success</code> to quickly create a General btn.</h6> -->
+  <div class="row button-group">
+    <div class="col-lg-3 col-md-4">
+      <button type="button" class="btn btn-block btn-ginda" style="height: 200px; font-weight: 500;"
+        (click)="NumeroExpedientesXMesAnioActual()">Expedientes Por Mes (Año Actual)</button>
+    </div>
+    <div class="col-lg-3 col-md-4">
+      <button type="button" class="btn btn-block btn-cyan" style="height: 200px; color: white; font-weight: 500;"  (click)="NumeroDeIDRangoFechas()">Número de Identificados y Desconocidos por mes</button>
+    </div>
+    <div class="col-lg-3 col-md-4">
+      <button type="button" class="btn btn-block btn-info" style="height: 200px;"(click)="NumeroDeExpedientesGeneradosXmes()">Número de Expedientes Generados Anualmente</button>
+    </div>
+    <div class="col-lg-3 col-md-4">
+      <button type="button" class="btn btn-block btn-success" style="height: 200px;" (click)="NumeroDesconocidosHMD()">Desconocidos (Hombres,Mujeres,Desco)</button>
+    </div>
+  </div>
+  <br>
+  <br>
+  <div class="row button-group">
+    <div class="col-lg-3 col-md-4">
+      <button type="button" class="btn btn-block btn-danger" style="height: 200px; font-weight: 500;"
+        (click)="FosasXMunicipioRangoFechas()">Fosas Por Municipio</button>
+    </div>
+    <div class="col-lg-3 col-md-4">
+      <button type="button" class="btn btn-block btn-warning" style="height: 200px; font-weight: 500;"
+        (click)="FosasNumeroMunicipioRangoFechas()">Número De Fosas Por Municipios </button>
+    </div>
+    <div class="col-lg-3 col-md-4">
+      <button type="button" class="btn btn-block btn-primary" style="height: 200px;"(click)="NumeroDeFosasXmes()">Número Fosas Localizadas por mes</button>
+    </div>
+    <div class="col-lg-3 col-md-4">
+      <button type="button" class="btn btn-block btn-danger" style="height: 200px;" (click)="FosasEncontradasPor()">Número de fosas localizadas por</button>
+    </div>
+  </div>
+
+
+  
+</div>
+
+<div id="reporteFosasPorMunicipioRango" style="display:none">
+
+
+
+
+
+  <!-- <div id="element-to-print">
+    <span>I'm on page 1!</span>
+    <div class="html2pdf__page-break"></div>
+    <span>I'm on page 2!</span>
+  </div> -->
+
+  <div id="element-to-print" *ngFor="let item of reporteFosasXMunicipio; let i= index;">
+    <br>
+    <div class="html2pdf__page-break">
+
+      <div class="row">
+        <div class="col-lg-3 col-md-4">
+          <img alt="" height="127" src="assets/images/fgje_oficio.png" width="127" class="text-center" />
+        </div>
+        <div class="col-lg-9 col-md-4" style="margin-top: 30px;">
+          <h3 style="color: black;"><b>Fiscalía General De Justicia Del Estado De Sonora</b> </h3>
+          <p>
+            <span style="color: black;"> <b>Reporte De Fosas Por Municipio Del {{fechaInicial |  date:'dd-MM-yyyy'}} al {{fechaFinal |  date:'dd-MM-yyyy'}}</b>
+            </span>
+          </p>
+        </div>
+      </div>
+
+      <h3 style="font-weight: 900;">Municipio: {{item.Municipio}}</h3>
+      <table class="table table-sm">
+        <thead style="background-color: black;  color: white; font-weight: 500;">
+          <tr>
+            <th scope="col" class="text-center">Fosa</th>
+            <th scope="col" class="text-center">Fecha Localización</th>
+            <th scope="col" class="text-center"># Cuerpos</th>
+            <th scope="col" class="text-center"># Restos</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let fosa of item.fosas">
+            <td class="text-center">{{fosa.fosa}}</td>
+            <td class="text-center">{{fosa.FCH_LOCALIZACION}}</td>
+            <td class="text-center">{{fosa.num_cuerpos}}</td>
+            <td class="text-center">{{fosa.num_restos}}</td>
+          </tr>
+
+          <tr>
+            <td class="text-center">Total:{{item.num_fosas}} </td>
+            <td class="text-center"></td>
+            <td class="text-center">{{item.num_cuerpos}}</td>
+            <td class="text-center">{{item.num_restos}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
+
+</div>
+
+
+<div id="reporteNumeroFosasPorMunicipioRango" style="display:none">
+
+
+
+  <div class="row">
+    <div class="col-lg-3 col-md-4">
+      <img alt="" height="127" src="assets/images/fgje_oficio.png" width="127" class="text-center" />
+    </div>
+    <div class="col-lg-9 col-md-4" style="margin-top: 30px;">
+      <h3 style="color: black;"><b>Fiscalía General De Justicia Del Estado De Sonora</b> </h3>
+      <p>
+        <span style="color: black;"> <b>Reporte Número de Fosas Encontradas Por Municipio Del {{fechaInicial |  date:'dd-MM-yyyy'}} al
+            {{fechaFinal |  date:'dd-MM-yyyy'}}</b> </span>
+      </p>
+    </div>
+  </div>
+  <table class="table table-sm table-bordered">
+    <thead style="background-color: black;  color: white; font-weight: 500;">
+      <tr>
+        <th scope="col" class="text-center">Municipio</th>
+        <th scope="col" class="text-center"># Fosas</th>
+        <th scope="col" class="text-center"># Cuerpos</th>
+        <th scope="col" class="text-center"># Restos</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let fosa of reporteNumroFosasXMunicipio?.municipios;  let i= index;">
+          <td class="text-center" style="font-size: 12px; font-weight:bold;">{{fosa.Municipio}}</td>
+          <td class="text-center" style="font-size: 12px; font-weight:bold;">{{fosa.num_fosas}}</td>
+          <td class="text-center" style="font-size: 12px; font-weight:bold;">{{fosa.num_cuerpos}}</td>
+          <td class="text-center" style="font-size: 12px; font-weight:bold;">{{fosa.num_restos}}</td>
+        </tr>
+      <tr>
+        <td class="text-center" style="font-size: 12px; font-weight:bold;">Total: </td>
+        <td class="text-center" style="font-size: 12px; font-weight:bold;">{{reporteNumroFosasXMunicipio?.num_fosas}}</td>
+        <td class="text-center" style="font-size: 12px; font-weight:bold;">{{reporteNumroFosasXMunicipio?.num_cuerpos}}</td>
+        <td class="text-center" style="font-size: 12px; font-weight:bold;">{{reporteNumroFosasXMunicipio?.num_restos}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div id="reporteExpedientesMesAnio" style="display:none">
+
+
+
+  <div class="row">
+    <div class="col-lg-3 col-md-4">
+      <img alt="" height="127" src="assets/images/fgje_oficio.png" width="127" class="text-center" />
+    </div>
+    <div class="col-lg-9 col-md-4" style="margin-top: 30px;">
+      <h3 style="color: black;"><b>Fiscalía General De Justicia Del Estado De Sonora</b> </h3>
+      <p>
+        <span style="color: black;"> <b>Reporte Número Expedientes Generados por Mes, Año 2021</b> </span>
+      </p>
+    </div>
+  </div>
+  <br>
+  <table class="table">
+    <thead style="background-color: black;  color: white; font-weight: 500;">
+      <tr>
+        <th scope="col" class="text-center">Mes</th>
+        <th scope="col" class="text-center">Número de Expedientes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of reporte1">
+        <td class="text-center">{{item.Mes}}</td>
+        <td class="text-center">{{item.count}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div id="NumeroDeExpedientesGeneradosXmes" style="display:none">
+
+
+
+  <div class="row">
+    <div class="col-lg-3 col-md-4">
+      <img alt="" height="127" src="assets/images/fgje_oficio.png" width="127" class="text-center" />
+    </div>
+    <div class="col-lg-9 col-md-4" style="margin-top: 30px;">
+      <h3 style="color: black;"><b>Fiscalía General De Justicia Del Estado De Sonora</b> </h3>
+      <p>
+        <span style="color: black;"> <b>Reporte Número Expedientes Generados en el año</b> </span>
+      </p>
+    </div>
+  </div>
+  <br>
+  <table class="table">
+    <thead style="background-color: black;  color: white; font-weight: 900; font-size: 9px;">
+      <tr>
+        <th scope="col" class="text-center">MUNICIPIO</th>
+        <th scope="col" class="text-center">ENERO</th>
+        <th scope="col" class="text-center">FEBRERO</th>
+        <th scope="col" class="text-center">MARZO</th>
+        <th scope="col" class="text-center">ABRIL</th>
+        <th scope="col" class="text-center">MAYO</th>
+        <th scope="col" class="text-center">JUNIO</th>
+        <th scope="col" class="text-center">JULIO</th>
+        <th scope="col" class="text-center">AGOSTO</th>
+        <th scope="col" class="text-center">SEPTIEMBRE</th>
+        <th scope="col" class="text-center">OCTUBRE</th>
+        <th scope="col" class="text-center">NOVIEMBRE</th>
+        <th scope="col" class="text-center">DICIEMBRE</th>
+        <th scope="col" class="text-center">TOTAL</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of reporteNumeroXMesGenerados" style="font-size: 12px; font-weight: 900;">
+        <td class="text-center">{{item.LUGAR}}</td>
+        <td class="text-center">{{item.ENERO}}</td>
+        <td class="text-center">{{item.FEBRERO}}</td>
+        <td class="text-center">{{item.MARZO}}</td>
+        <td class="text-center">{{item.ABRIL}}</td>
+        <td class="text-center">{{item.MAYO}}</td>
+        <td class="text-center">{{item.JUNIO}}</td>
+        <td class="text-center">{{item.JULIO}}</td>
+        <td class="text-center">{{item.AGOSTO}}</td>
+        <td class="text-center">{{item.SEPTIEMRE}}</td>
+        <td class="text-center">{{item.OCUTUBRE}}</td>
+        <td class="text-center">{{item.NOMVIEMBRE}}</td>
+        <td class="text-center">{{item.DICIEMBRE}}</td>
+        <td class="text-center">{{item.TOTAL}}</td>
+      </tr>
+     
+     
+     
+      <tr style="font-size: 12px; font-weight: 900;">
+        <td class="text-center">TOTAL</td>
+        <td class="text-center">{{ENERO}}</td>
+        <td class="text-center">{{FEBRERO}}</td>
+        <td class="text-center">{{MARZO}}</td>
+        <td class="text-center">{{ABRIL}}</td>
+        <td class="text-center">{{MAYO}}</td>
+        <td class="text-center">{{JUNIO}}</td>
+        <td class="text-center">{{JULIO}}</td>
+        <td class="text-center">{{AGOSTO}}</td>
+        <td class="text-center">{{SEPTIEMBRE}}</td>
+        <td class="text-center">{{OCUTUBRE}}</td>
+        <td class="text-center">{{NOVIEMBRE}}</td>
+        <td class="text-center">{{DICIEMBRE}}</td>
+        <td class="text-center">{{TOTAL}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div id="reporteIDRango" style="display:none">
+
+
+
+  <div class="row">
+    <div class="col-lg-3 col-md-4">
+      <img alt="" height="127" src="assets/images/fgje_oficio.png" width="127" class="text-center" />
+    </div>
+    <div class="col-lg-9 col-md-4" style="margin-top: 30px;">
+      <h3 style="color: black;"><b>Fiscalía General De Justicia Del Estado De Sonora</b> </h3>
+      <p>
+        <span style="color: black;"> <b>Reporte Número de Cuerpos Con estatus Identificados y Desconocidos Del {{fechaInicial |  date:'dd-MM-yyyy'}} al {{fechaFinal |  date:'dd-MM-yyyy'}} </b> </span>
+      </p>
+    </div>
+  </div>
+  <br>
+  <table class="table">
+    <thead style="background-color: black;  color: white; font-weight: 500;">
+      <tr>
+        <th scope="col" class="text-center">Mes</th>
+        <th scope="col" class="text-center"># Identificados</th>
+        <th scope="col" class="text-center"># Desconocidos</th>
+      </tr>
+    </thead>
+    <tbody>
+      <div *ngFor="let item of reporteNumeroIDXMes">
+        <tr *ngIf="item.series[0].value != 0  &&  item.series[1].value != 0">
+        <td class="text-center">{{item.name}}</td>
+        <td class="text-center">{{item.series[0].value}}</td>
+        <td class="text-center">{{item.series[1].value}}</td>
+      </tr>
+      </div>
+      
+    </tbody>
+  </table>
+</div>
+
+<div id="NumeroDesconocidosHMD" style="display:none">
+
+
+
+  <div class="row">
+    <div class="col-lg-3 col-md-4">
+      <img alt="" height="127" src="assets/images/fgje_oficio.png" width="127" class="text-center" />
+    </div>
+    <div class="col-lg-9 col-md-4" style="margin-top: 30px;">
+      <h3 style="color: black;"><b>Fiscalía General De Justicia Del Estado De Sonora</b> </h3>
+      <p>
+        <span style="color: black;"> <b>Reporte Número de desconocidos por tipo de sexo</b> </span>
+      </p>
+    </div>
+  </div>
+<div class="row">
+  <div class='col-sm-12 col-xs-12 col-md-6'>
+    <h4>Municipio: {{titulo}}</h4>
+  </div>
+  <div class='col-sm-12 col-xs-12 col-md-6' style="text-align: right;">
+    <h4> Año: {{anio}}</h4>
+  </div>
+</div>
+  <table class="table">
+    <thead style="background-color: black;  color: white; font-weight: 500;">
+      <tr>
+        <th scope="col" class="text-center">Mes</th>
+        <th scope="col" class="text-center">Hombres</th>
+        <th scope="col" class="text-center">Mujeres</th>
+        <th scope="col" class="text-center">Desconocidos</th>
+        <th scope="col" class="text-center">Total</th>
+        
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of reporteDesconocidosHMD">
+        <td class="text-center" style="font-size: 13px; font-weight: 900;">{{item.serie}}</td>
+        <td class="text-center"style="font-size: 13px; font-weight: 900;">{{item.hombres}}</td>
+        <td class="text-center"style="font-size: 13px; font-weight: 900;">{{item.mujeres}}</td>
+        <td class="text-center"style="font-size: 13px; font-weight: 900;">{{item.desconocidos}}</td>
+        <td class="text-center" style="font-size: 13px; font-weight: 900;">{{item.total}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div id="NumeroDeFosasXmes" style="display:none">
+
+
+
+  <div class="row">
+    <div class="col-lg-3 col-md-4">
+      <img alt="" height="127" src="assets/images/fgje_oficio.png" width="127" class="text-center" />
+    </div>
+    <div class="col-lg-9 col-md-4" style="margin-top: 30px;">
+      <h3 style="color: black;"><b>Fiscalía General De Justicia Del Estado De Sonora</b> </h3>
+      <p>
+        <span style="color: black;"> <b>Reporte Número De Fosas Localizadas Por Mes</b> </span>
+      </p>
+    </div>
+  </div>
+  <br>
+  <table class="table">
+    <thead style="background-color: black;  color: white; font-weight: 900; font-size: 9px;">
+      <tr>
+        <th scope="col" class="text-center">MUNICIPIO</th>
+        <th scope="col" class="text-center">ENERO</th>
+        <th scope="col" class="text-center">FEBRERO</th>
+        <th scope="col" class="text-center">MARZO</th>
+        <th scope="col" class="text-center">ABRIL</th>
+        <th scope="col" class="text-center">MAYO</th>
+        <th scope="col" class="text-center">JUNIO</th>
+        <th scope="col" class="text-center">JULIO</th>
+        <th scope="col" class="text-center">AGOSTO</th>
+        <th scope="col" class="text-center">SEPTIEMBRE</th>
+        <th scope="col" class="text-center">OCTUBRE</th>
+        <th scope="col" class="text-center">NOVIEMBRE</th>
+        <th scope="col" class="text-center">DICIEMBRE</th>
+        <th scope="col" class="text-center">TOTAL</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of reporteNumeroXMesGenerados" style="font-size: 12px; font-weight: 900;">
+        <td class="text-center">{{item.LUGAR}}</td>
+        <td class="text-center">{{item.ENERO}}</td>
+        <td class="text-center">{{item.FEBRERO}}</td>
+        <td class="text-center">{{item.MARZO}}</td>
+        <td class="text-center">{{item.ABRIL}}</td>
+        <td class="text-center">{{item.MAYO}}</td>
+        <td class="text-center">{{item.JUNIO}}</td>
+        <td class="text-center">{{item.JULIO}}</td>
+        <td class="text-center">{{item.AGOSTO}}</td>
+        <td class="text-center">{{item.SEPTIEMRE}}</td>
+        <td class="text-center">{{item.OCUTUBRE}}</td>
+        <td class="text-center">{{item.NOMVIEMBRE}}</td>
+        <td class="text-center">{{item.DICIEMBRE}}</td>
+        <td class="text-center">{{item.TOTAL}}</td>
+      </tr>
+     
+     
+     
+      <tr style="font-size: 12px; font-weight: 900;">
+        <td class="text-center">TOTAL</td>
+        <td class="text-center">{{ENERO}}</td>
+        <td class="text-center">{{FEBRERO}}</td>
+        <td class="text-center">{{MARZO}}</td>
+        <td class="text-center">{{ABRIL}}</td>
+        <td class="text-center">{{MAYO}}</td>
+        <td class="text-center">{{JUNIO}}</td>
+        <td class="text-center">{{JULIO}}</td>
+        <td class="text-center">{{AGOSTO}}</td>
+        <td class="text-center">{{SEPTIEMBRE}}</td>
+        <td class="text-center">{{OCUTUBRE}}</td>
+        <td class="text-center">{{NOVIEMBRE}}</td>
+        <td class="text-center">{{DICIEMBRE}}</td>
+        <td class="text-center">{{TOTAL}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="large" color="#ffffff" type="square-jelly-box" [fullScreen]="true">
+  <p style="color: white"> Generando Reporte... </p>
+</ngx-spinner>

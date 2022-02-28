@@ -1,0 +1,154 @@
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="large" color="#ffffff" type="square-jelly-box" [fullScreen]="true">
+  <p style="color: white"> Cargando... </p>
+</ngx-spinner>
+
+<div class="shadow card pb-2 mb-5 rounded mt-2">
+  <div class="card-body">
+    <div class="card-title">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <h2 class="text-center mt-5" style="color: black; font-weight: 900;">Control de Citas para el Tramite RNPSP</h2>
+          </div>
+
+          <br>
+
+          <div class="col-lg-12">
+            <div class="row">
+              <div class="col-md-3">
+                  <div class="card card-hover">
+                    <div class="box bg-totales cursor-pointer text-center" (click)="searchVigencia = ''">
+                      <div *ngFor="let alerta of expedientes let i = index; let c= last">
+                        <h1 class="text-white" *ngIf="c" >&nbsp;{{i+1}}</h1>
+                        <h5 class="font-light text-white" *ngIf="c">Total Citas</h5>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+              <!-- Column -->
+              <div class="col-md-3">
+                  <div class="card card-hover">
+                    <div class="box bg-aprobado cursor-pointer text-center" (click)="searchVigencia = '1'">
+                      <div *ngFor="let alerta of expedientes let i = index; let c= last">
+                        <h1 class="text-dark" *ngIf="c" >&nbsp;{{activas}}</h1>
+                        <h5 class="font-dark text-dark" *ngIf="c">Aprobado</h5>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+              <!-- Column -->
+              <div class="col-md-3">
+                  <div class="card card-hover">
+                    <div class="box bg-no-cumple cursor-pointer text-center" (click)="searchVigencia = '2'">
+                      <div *ngFor="let alerta of expedientes let i = index; let c= last">
+                        <h1 class="text-white" *ngIf="c" >&nbsp;{{no_cumple}}</h1>
+                        <h5 class="font-white text-white" *ngIf="c">No Cumple</h5>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+              <!-- Column -->
+              <div class="col-md-3">
+                <div class="card card-hover">
+                  <div class="box bg-sin-resultado cursor-pointer text-center" (click)="searchVigencia = '3'">
+                    <div *ngFor="let alerta of expedientes let i = index; let c= last">
+                      <h1 class="text-dark" *ngIf="c" >&nbsp;{{sin_resultado}}</h1>
+                      <h5 class="font-dark text-dark" *ngIf="c">Sin Resultado</h5>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr>
+    </div>
+
+    <div class="card-body">
+        <div class="row">
+          <div class="col-md-8">
+          </div>
+          <div class="col-md-4">
+            <button class="btn btn-info" type="button" (click)="crearExpediente()" style="float:right">
+              <i class="fa fa-plus"></i> Agregar Cita
+            </button>
+          </div>
+        </div>
+      <br>
+
+      <!-- Inicio Tabla -->
+
+      <div class="table-responsive bg-white">
+        <table class="table table-hover ">
+          <thead class="">
+
+            <tr>
+              <th style="font-weight: 900;">Número Control</th>
+              <th style="font-weight: 900;">Nombre</th>
+              <th style="font-weight: 900;">Apellido Paterno</th>
+              <th style="font-weight: 900;">Apellido Materno</th>
+              <th style="font-weight: 900;">Fecha de la Cita</th>
+              <th style="font-weight: 900;">Acciones</th>
+            </tr>
+            <tr>
+              <td><input type="text" class="form-control border-1 " [(ngModel)]="searchNumeroEx"></td>
+              <td><input type="text" class="form-control border-1 " [(ngModel)]="searchNombre"></td>
+              <td><input type="text" class="form-control border-1 " [(ngModel)]="searchPaterno"></td>
+              <td><input type="text" class="form-control border-1 " [(ngModel)]="searchMaterno"></td>
+              <td><input type="text" class="form-control border-1 " [(ngModel)]="searchFechaCita"></td>
+              <td></td>
+            </tr>
+          </thead>
+          <tbody>
+
+            <tr
+              *ngFor="let expediente of expedientes 
+                                    | BuscadorGeneralSearchPipe : { CONTROL: searchNumeroEx }
+                                    | BuscadorGeneralSearchPipe : { NOMBRE: searchNombre }
+                                    | BuscadorGeneralSearchPipe : { PATERNO: searchPaterno }
+                                    | BuscadorGeneralSearchPipe : { MATERNO: searchMaterno }
+                                    | BuscadorGeneralSearchPipe : { FECHA_CITA: searchFechaCita }
+                                    | BuscadorGeneralSearchPipe : { VIGENCIA_C3: searchVigencia }
+                                    | paginate: { itemsPerPage: 10, currentPage: p, id: 'tableExpedientes' }; let i = index;"
+              (dblclick)="do_some_action(expediente)"
+              [ngClass]="{'bg-aprobado':expediente.VIGENCIA_C3 == '1', 
+                          'bg-no-cumple':expediente.VIGENCIA_C3 == '2',
+                          'bg-sin-resultado':expediente.VIGENCIA_C3 == '3' }">
+              <td class="align-middle text-truncate" style="font-family: Arial, Helvetica, sans-serif!important; ">
+                {{expediente.CONTROL}}</td>
+              <td class="align-middle text-truncate" style="font-family: Arial, Helvetica, sans-serif!important; ">
+                {{expediente.NOMBRE}}</td>
+              <td class="align-middle text-truncate" style="font-family: Arial, Helvetica, sans-serif!important; ">
+                {{expediente.PATERNO}}</td>
+              <td class="align-middle text-truncate" style="font-family: Arial, Helvetica, sans-serif!important; ">
+                {{expediente.MATERNO}} </td>
+              <td class="align-middle text-truncate" style="font-family: Arial, Helvetica, sans-serif!important; ">
+                {{expediente.FECHA_CITA | date:'yyyy-MM-dd' }}</td>
+              <td class="align-middle text-truncate">
+
+                <button class="btn btn-secondary  mr-2 fa fa-edit" (click)="do_some_action(expediente)"></button>
+                
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="row mb-4">
+        <div class="col-12">
+          <div class="bg-white text-center">
+            <pagination-controls autoHide="true" (pageChange)="pageChanged($event)"
+              (pageBoundsCorrection)="pageChanged($event)" id="tableExpedientes" maxSize="10" previousLabel="Anterior"
+              nextLabel="Siguiente"></pagination-controls>
+          </div>
+        </div>
+      </div>
+
+      <!-- fin Tabla -->
+
+    </div>
+  </div>
+
+</div>
+<!-- </div> -->

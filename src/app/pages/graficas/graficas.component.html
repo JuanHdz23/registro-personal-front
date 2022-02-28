@@ -1,0 +1,173 @@
+
+<mat-card class="mt-0 mat-elevation-z8" style="border-radius: 15px;">
+
+  <div class="card-title mt-0">
+    <h4 class="text-center " style="font-weight: bold; padding-top: 10px;">Tablero Estadístico</h4><hr>
+  </div>
+<mat-card-content class="mt-0">
+
+  <div class="card border-1 box-shadow" style="background-color: white!important">
+    <div class="paddingHeader transparent border-1 text-muted">
+        <h5><i class="fas fa-chart-pie fa-lg" aria-hidden="true"></i> ESTADÍSTICA</h5><hr><br>
+        <form [formGroup]="estadisticasForm">
+          <div class="row">
+            <div class="col-sm-12 col-xs-12 col-md-3">
+              <div class="form-group">
+                <label for="FECHA_INICIAL"><code>*</code>Fecha inicial</label>
+                <input type="date" class="form-control" id="FECHA_INICIAL" value="2008-05-13" formControlName="FECHA_INICIAL">
+                <span class="text-danger"
+                  *ngIf="estadisticasForm.controls.FECHA_INICIAL.invalid && estadisticasForm.controls.FECHA_INICIAL.touched">
+                  *La fecha inicial es requerida
+                </span>
+              </div>
+            </div>
+
+            <div class="col-sm-12 col-xs-12 col-md-3">
+              <div class="form-group">
+                <label for="FECHA_FINAL"><code>*</code>Fecha final</label>
+                <input type="date" class="form-control" id="FECHA_FINAL" value="2008-05-13" formControlName="FECHA_FINAL">
+                <span class="text-danger"
+                  *ngIf="estadisticasForm.controls.FECHA_FINAL.invalid && estadisticasForm.controls.FECHA_FINAL.touched">
+                  *La fecha final es requerida
+                </span>
+              </div>
+            </div>
+
+            <div class='col-sm-12 col-xs-12 col-md-2 mt-1'>
+              <button type="button" class="btn btn-block btn-md btn-primary mt-4" (click)="buscar(estadisticasForm)">
+                <i class="fa fa-search"></i> Mostrar resultados
+              </button>
+            </div>
+          </div>
+        </form>
+
+    </div>
+</div>
+
+</mat-card-content>
+</mat-card>
+
+
+<br>
+
+  <!-- <div class='col-sm-12 col-xs-12 col-md-5'>
+    <mat-accordion>
+      <mat-expansion-panel [expanded]="true" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Desconocidos e identificados.
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <ngx-charts-advanced-pie-chart [view]="view" [scheme]="colorScheme" [results]="single" [gradient]="gradient"
+          (select)="onSelect($event)">
+        </ngx-charts-advanced-pie-chart>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div> -->
+
+  <div class="row  mb-2">
+    <div class='col-sm-12 col-xs-12 col-md-12'>
+      <mat-accordion >
+        <mat-expansion-panel [expanded]="true" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+            Fosas Por Municipio.
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div class="row" style="height: 400px;">
+            <div class="col-sm-12 col-xs-12 col-md-12">
+              <ngx-charts-bar-vertical
+              [scheme]="colorScheme"
+              [results]="singleMunicipioFosas"
+              [gradient]="Fosas_gradient"
+              [xAxis]="Fosas_showXAxis"
+              [yAxis]="Fosas_showYAxis"
+              [legend]="Fosas_showLegend"
+              [showXAxisLabel]="Fosas_showXAxisLabel"
+              [showYAxisLabel]="Fosas_showYAxisLabel"
+              [xAxisLabel]="Fosas_xAxisLabel"
+              [yAxisLabel]="Fosas_yAxisLabel"
+              (select)="Fosas_select($event)"
+              barPadding= "4">
+            </ngx-charts-bar-vertical>
+
+            </div></div>
+
+
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+  </div>
+
+
+<div class="row mt-3">
+  <div class='col-sm-12 col-xs-12 col-md-12'>
+    <mat-accordion>
+      <mat-expansion-panel [expanded]="true" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Cuerpos y restos por municipio.
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+          <div class="row" style="height: 400px;">
+            <div class="col-sm-12 col-xs-12 col-md-12">
+              <ngx-charts-bar-vertical-2d
+              scheme="flame"
+              [results]="singleMunicipioCuerposRestos"
+              [gradient]="Fosas_R_C_gradient"
+              [xAxis]="Fosas_R_C_showXAxis"
+              [yAxis]="Fosas_R_C_showYAxis"
+              [legend]="Fosas_R_C_showLegend"
+              [showXAxisLabel]="Fosas_R_C_showXAxisLabel"
+              [showYAxisLabel]="Fosas_R_C_showYAxisLabel"
+              [xAxisLabel]="Fosas_R_C_xAxisLabel"
+              [yAxisLabel]="Fosas_R_C_yAxisLabel"
+              [legendTitle]="Fosas_R_C_legendTitle"
+              (select)="Fosas_R_C_onSelect($event)"
+              [barPadding]="1"
+              [groupPadding]="1">
+            </ngx-charts-bar-vertical-2d>
+            </div></div>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+</div>
+
+
+
+<div class="row mt-3">
+  <div class='col-sm-12 col-xs-12 col-md-12'>
+    <mat-accordion>
+      <mat-expansion-panel [expanded]="true" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+          Madres Buscadoras.
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div class="row" style="height: 400px;">
+             <div class="col-sm-12 col-xs-12 col-md-12">
+              <ngx-charts-bar-vertical-2d
+              scheme="flame"
+              [results]="auxMultiMadresBuscadoras"
+              [gradient]="Fosas_R_C_gradient"
+              [xAxis]="Fosas_R_C_showXAxis"
+              [yAxis]="Fosas_R_C_showYAxis"
+              [legend]="Fosas_R_C_showLegend"
+              [showXAxisLabel]="Fosas_R_C_showXAxisLabel"
+              [showYAxisLabel]="Fosas_R_C_showYAxisLabel"
+              [xAxisLabel]="Fosas_R_C_xAxisLabel"
+              [yAxisLabel]="Fosas_R_C_yAxisLabel"
+              [legendTitle]="Fosas_R_C_legendTitle"
+              (select)="Fosas_R_C_onSelect($event)"
+              [barPadding]="1"
+              [groupPadding]="1">
+            </ngx-charts-bar-vertical-2d>
+        </div>
+        </div>
+
+
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+</div>

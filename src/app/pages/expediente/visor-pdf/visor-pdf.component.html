@@ -1,0 +1,53 @@
+
+  <!-- <button  mat-dialog-close class="btn btn-warning"
+          type="button" >
+          Cerrar
+        </button> -->
+        <!-- <button  mat-dialog-close type="button" class="btn btn-danger btn-circle" style="float:right;"><i class="fa fa-times"></i> </button>
+
+<br>
+<br>
+<br>
+
+<mat-card class="mat-elevation-z4">
+  <mat-card-header>
+    <mat-card-title>{{data.titulo}}</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+<pdf-viewer src={{data.documento}}
+              [render-text]="true"
+              style="display: block;"
+  ></pdf-viewer>
+  </mat-card-content>
+</mat-card>
+
+mat-dialog-actions -->
+
+<span mat-dialog-title>
+  <div class="row">
+    <div class="col-md-10">
+    <h2>{{data.titulo}}</h2>
+    </div>
+    <div class="col-md-2 " style="text-align: right;">
+       <!-- <button mat-dialog-close type="button" class="btn btn-danger btn-circle"><i class="fa fa-times"></i> </button> -->
+       <button class="btn btn-danger waves-effect waves-light" mat-dialog-close type="button"><span class="btn-label"><i class="fa fa-times"></i></span></button>
+      </div>
+
+
+  </div>
+
+</span>
+<mat-dialog-content class="mat-typography">
+  <pdf-viewer src={{data.documento}}
+              [render-text]="true"
+              style="display: block;"
+  ></pdf-viewer>
+</mat-dialog-content>
+<mat-dialog-actions align="end" class="mt-2">
+  <!-- <button   (click)="showPdfAutopsia()">Descargar</button> -->
+  <button type="button" class="btn btn-success" (click)="showPdfAutopsia()"><i class="fa fa-download"></i> Descargar</button>
+</mat-dialog-actions>
+
+
+
+

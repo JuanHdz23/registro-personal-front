@@ -1,0 +1,16 @@
+export interface FotosModel {
+    TIPO_REGISTRO: string,
+    CLAVE_LUGAR: string,
+    ANIO: string,
+    CONTROL: string,
+    FRONTAL: string,
+    PIZQUIERDO: string,
+    PDERECHO: string,
+    CUERPO_AEREA: string,
+    CUERPO_LATERAL1: string,
+    CUERPO_LATERAL2: string,
+    CUERPO_ESPALDA: string,
+    FCH_REG: Date,
+    FCH_UAC: Date,
+    USUARIO: string,
+  }

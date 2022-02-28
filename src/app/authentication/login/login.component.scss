@@ -1,0 +1,139 @@
+.btn-color{
+  background-color: #af7b15;
+  border-color: #af7b15;
+  color: white!important;
+  font-weight: bold;
+}
+
+.btn-color:hover{
+  background-color: white ;
+  color: #af7b15!important;
+  border-color: rgb(220,196,125) ;
+  /* box-shadow: 0 6px 6px rgb(220,196,125); */
+}
+
+
+.btn-color:active{
+  background-color: #af7b15;
+}
+
+.caja-color{
+  background-color: #af7b15;
+  color: white;
+  border: #af7b15!important;
+}
+
+
+.container input:checked ~ .checkmark {
+  background-color: black;
+}
+
+
+.login-container {
+  position: absolute;
+
+  .card {
+      // background-color: transparent !important;
+      background-color: rgba(0, 0, 0, 0.5) !important;
+
+      .card-header {
+          width: 200px;
+          height: 200px;
+          margin: 0 auto;
+          margin-top: -40px;
+          border-radius: 50%;
+          font-size: 36px;
+          // background-color: rgba(255,255,255,.9) !important;
+          background-color: transparent !important;
+          box-shadow: none !important;
+      }
+  }
+}
+
+.login-fondo {
+  //  background-color: rgba(255,255,255,0.8);
+  //  filter:brightness(1.2);
+  background-image: url('src/assets/images/background/14.jpg');
+
+  background-position: center;
+  /* Center the image */
+  background-repeat: no-repeat;
+  /* Do not repeat the image */
+  background-size: cover;
+  /* Resize the background image to cover the entire container */
+}
+
+.login-image {
+
+  background-image: url('src/assets/images/fgje_oficio.png');
+  // background-image: url('src/assets/img/Logo_fiscalia.png');
+  // background-image: url('src/assets/img/JUSTICIA-ORO-TRASPARENTE.png');
+
+  background-position: center;
+  /* Center the image */
+  background-repeat: no-repeat;
+  /* Do not repeat the image */
+  background-size: cover;
+}
+
+.letras {
+  left: 20px;
+  top: 20px;
+}
+
+.titulo-sistema {
+  text-align: center;
+
+  width: 100%;
+
+  .definicion {
+      @media screen and (max-width: 425px) {
+          font-size: 1.2em;
+      }
+
+      @media screen and (max-width: 375px) {
+          font-size: 1em;
+      }
+
+      font-size: 2.8em;
+      font-family: 'CooperHewittMedium';
+      margin: 0 auto;
+      text-align: left;
+      padding-right: 4px;
+        color: #af7b15;
+  }
+
+  .divisor {
+
+      // border-left: .1em solid #3b1d04;
+      // background-color: #3b1d04;
+      font-family: 'Ubuntu', sans-serif;
+      font-size: 6em;
+      color: #af7b15;
+      font-weight: 800;
+  }
+
+  .siglas {
+      @media screen and (max-width: 425px) {
+          font-size: 4em;
+      }
+
+      font-size: 6em;
+      font-family: 'Ubuntu',
+      sans-serif;
+      font-weight: 900;
+      color: #af7b15;
+      margin: 0 auto;
+      text-align: left;
+      padding-left: 4px;
+      padding-top: 0px;
+      padding-bottom: 0px;
+      // width: 200px;
+      // height: 50px;
+  }
+
+}
+
+.inicioSesion {
+  font-family: 'CooperHewittMedium';
+}

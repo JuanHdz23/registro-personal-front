@@ -1,0 +1,40 @@
+export interface LugarHallazgoModel {
+  TIPO_REGISTRO: string,
+  CLAVE_LUGAR: string,
+  ANIO: string,
+  CONTROL: string,
+  FCH_INTERVENCION: Date,
+  TIPO_ASENTAMIENTO: number,
+  TIPO_LUGAR: number,
+  TIPO_LUGAR_ESPECIFICA: string,
+  CALLE: string,
+  NO_EXTERIOR: string,
+  NO_INTERIOR: string,
+  ENTRE_CALLE: string,
+  Y_CALLE: string,
+  COLONIA: string,
+  CODIGO_POSTAL: number,
+  LOCALIDAD: string,
+  MUNICIPIO: number,
+  ENTIDAD: number,
+  PAIS: number,
+  LATITUD: number,
+  LONGITUD: number,
+  ID_FOSA: any,
+  FCH_REG: Date,
+  FCH_UAC: Date,
+  USUARIO: string,
+  LUGAR_INTERVENCION_FOTOGRAFIA: LugarHallazgoFotografiaModel[]
+}
+
+export interface LugarHallazgoFotografiaModel {
+  TIPO_REGISTRO: string,
+  CLAVE_LUGAR: string,
+  ANIO: string,
+  CONTROL: string,
+  ID: number,
+  FOTOGRAFIA: string,
+  FCH_REG: Date,
+  FCH_UAC: Date,
+  USUARIO: string
+}
